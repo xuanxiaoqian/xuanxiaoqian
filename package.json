@@ -1,0 +1,21 @@
+{
+  "private": true,
+  "type": "module",
+  "name": "xuanxiaoqian.com",
+  "version": "1.0.0",
+  "description": "轩小浅官网",
+  "scripts": {
+    "dev": "vitepress dev docs",
+    "build": "vitepress build docs",
+    "serve": "vitepress serve docs"
+  },
+  "author": "xuanxiaoqian",
+  "license": "ISC",
+  "devDependencies": {
+    "typescript": "^5.0.4",
+    "vitepress": "1.3.1"
+  },
+  "dependencies": {
+    "vue": "^3.3.4"
+  }
+}
