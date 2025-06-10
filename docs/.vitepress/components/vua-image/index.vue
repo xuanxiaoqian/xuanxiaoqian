@@ -1,17 +1,14 @@
 <template>
-  <div class="vua-image">
-    <img class="img" :src="props.src" @click="imgClick" :alt="'轩小浅图片:' + props.src" :style="style" />
-
-    <Transition name="modal">
-      <div class="enlarge-img" v-if="isShow" @click="isShow = false">
-        <img :src="props.src" alt="qian-cli图片" />
-      </div>
-    </Transition>
-  </div>
+  <photo-provider>
+    <photo-consumer  :key="props.src" :src="props.src">
+      <img :src="props.src" class="view-box">
+    </photo-consumer>
+  </photo-provider>
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref } from 'vue';
+
 const props = defineProps(['src', 'style'])
 
 let isShow = ref(false)

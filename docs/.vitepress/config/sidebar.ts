@@ -1,19 +1,58 @@
 import { DefaultTheme } from 'vitepress'
-import { HEAD_PATH } from './nav'
 
-
-export const sdeibarConfig: DefaultTheme.Sidebar = {
-  [HEAD_PATH + '/idea']: [
+export const sidebarConfig: DefaultTheme.Sidebar = {
+  ['/pages/demo']: [
     {
       items: [
-        { text: '成为怎样的人', link: `${HEAD_PATH}/idea/why_person` },
-      ],
-    },
+        {
+          text: "demo",
+          link: "/pages/demo/1-demo"
+        },
+        {
+          text: "这是demo",
+          link: "/pages/demo/2-这是demo"
+        }
+      ]
+    }
   ],
-  [HEAD_PATH + '/trade']: [
+  ['/pages/idea']: [
     {
       items: [
-      ],
-    },
+        {
+          text: "idea",
+          link: "/pages/idea/1-idea"
+        }
+      ]
+    }
   ],
+  ['/pages/text/1']: [
+    {
+      items: [
+        {
+          text: "邓",
+          link: "/pages/text/1/1-邓"
+        }
+      ]
+    }
+  ],
+  ['/pages/text/2']: [
+    {
+      items: [
+        {
+          text: "剑",
+          link: "/pages/text/2/1-剑"
+        }
+      ]
+    }
+  ],
+  ['/pages/text/3']: [
+    {
+      items: [
+        {
+          text: "波",
+          link: "/pages/text/3/1-波"
+        }
+      ]
+    }
+  ]
 }

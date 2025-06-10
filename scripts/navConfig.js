@@ -1,0 +1,79 @@
+
+import fs from 'fs';
+import path from 'path';
+import { fileURLToPath } from 'url';
+import config from './config.js';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+const PAGES_DIR = path.join(__dirname, `../docs/${config.pagesName}`);
+const HEAD_PATH = `/${config.pagesName}`;
+
+const OUTPUT_FILE = path.join(__dirname, '../docs/.vitepress/config/nav.ts');
+
+function scanDirectory(dirPath) {
+  const entries = fs.readdirSync(dirPath);
+  const result = {
+    files: [],
+    dirs: []
+  };
+
+  entries.forEach(entry => {
+    const fullPath = path.join(dirPath, entry);
+    if (fs.statSync(fullPath).isDirectory()) {
+      result.dirs.push({
+        name: entry,
+        ...scanDirectory(fullPath)
+      });
+    } else if (entry.endsWith('.md')) {
+      result.files.push(entry);
+    }
+  });
+
+  return result;
+}
+
+function generateNavItems(structure, basePath = '') {
+  const navItems = [];
+
+  structure.dirs.forEach(dir => {
+    const currentPath = basePath ? `${basePath}/${dir.name}` : dir.name;
+    const defaultFile = dir.files.find(f => f.startsWith('1-'));
+
+    if (dir.dirs.length > 0) {
+      // 处理多级目录（如text/1/）
+      const items = generateNavItems(dir, currentPath);
+      if (items.length > 0) {
+        navItems.push({
+          text: dir.name,
+          items
+        });
+      }
+    } else if (defaultFile) {
+      // 处理单级目录
+      navItems.push({
+        text: dir.name,
+        link: `${HEAD_PATH}/${currentPath}/${defaultFile.replace('.md', '')}`,
+        activeMatch: `${HEAD_PATH}/${currentPath}/`
+      });
+    }
+  });
+
+  return navItems;
+}
+
+function generateConfig() {
+
+  const structure = scanDirectory(PAGES_DIR);
+  const navConfig = generateNavItems(structure);
+
+  const configContent = `import { DefaultTheme } from 'vitepress'
+
+export const navConfig: DefaultTheme.NavItem[] = ${JSON.stringify(navConfig, null, 2).replace(/"([^"]+)":/g, '$1:')}`;
+
+  fs.writeFileSync(OUTPUT_FILE, configContent);
+  console.log('导航配置已生成');
+}
+
+generateConfig();
