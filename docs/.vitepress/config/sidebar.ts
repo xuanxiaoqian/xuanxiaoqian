@@ -5,52 +5,32 @@ export const sidebarConfig: DefaultTheme.Sidebar = {
     {
       items: [
         {
-          text: "demo",
-          link: "/pages/demo/1-demo"
+          text: "demo1",
+          link: "/pages/demo/1-demo1"
+        }
+      ]
+    }
+  ],
+  ['/pages/交易']: [
+    {
+      items: [
+        {
+          text: "交易理念",
+          link: "/pages/交易/1-交易理念"
+        }
+      ]
+    }
+  ],
+  ['/pages/小说/四季']: [
+    {
+      items: [
+        {
+          text: "第一个季节",
+          link: "/pages/小说/四季/1-第一个季节"
         },
         {
-          text: "这是demo",
-          link: "/pages/demo/2-这是demo"
-        }
-      ]
-    }
-  ],
-  ['/pages/idea']: [
-    {
-      items: [
-        {
-          text: "idea",
-          link: "/pages/idea/1-idea"
-        }
-      ]
-    }
-  ],
-  ['/pages/text/1']: [
-    {
-      items: [
-        {
-          text: "邓",
-          link: "/pages/text/1/1-邓"
-        }
-      ]
-    }
-  ],
-  ['/pages/text/2']: [
-    {
-      items: [
-        {
-          text: "剑",
-          link: "/pages/text/2/1-剑"
-        }
-      ]
-    }
-  ],
-  ['/pages/text/3']: [
-    {
-      items: [
-        {
-          text: "波",
-          link: "/pages/text/3/1-波"
+          text: "第二个季节",
+          link: "/pages/小说/四季/2-第二个季节"
         }
       ]
     }

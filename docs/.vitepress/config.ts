@@ -15,6 +15,17 @@ export default defineConfig({
     siteTitle: '轩小浅',
     nav: navConfig,
     sidebar: sidebarConfig,
+    docFooter: {
+      prev: '上一篇',
+      next: '下一篇'
+    },
+    // 移动端 - 外观
+    darkModeSwitchLabel: '外观',
+    // 移动端 - 返回顶部
+    returnToTopLabel: '返回顶部',
+    // 移动端 - menu
+    sidebarMenuLabel: '菜单',
+    outlineTitle: '本页目录'
   },
   markdown: markdownConfig
 })
