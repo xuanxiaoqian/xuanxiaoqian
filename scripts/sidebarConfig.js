@@ -1,4 +1,3 @@
-
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
@@ -11,7 +10,6 @@ const PAGES_DIR = path.join(__dirname, `../docs/${config.pagesName}`);
 const HEAD_PATH = `/${config.pagesName}`;
 
 const OUTPUT_FILE = path.join(__dirname, '../docs/.vitepress/config/sidebar.ts');
-
 
 function scanDirectory(dirPath) {
     const entries = fs.readdirSync(dirPath);
@@ -35,7 +33,8 @@ function generateSidebarConfig(structure, currentPath = '') {
         const dirPath = currentPath ? `${currentPath}/${dir.name}` : dir.name;
         const configKey = `['${HEAD_PATH}/${dirPath}']`;
 
-        const mdFiles = dir.files
+        // 分离符合命名规范和不规范的文件
+        const standardFiles = dir.files
             .filter(file => /^\d+-/.test(file))
             .sort((a, b) => parseInt(a.split('-')[0]) - parseInt(b.split('-')[0]))
             .map(file => ({
@@ -43,9 +42,18 @@ function generateSidebarConfig(structure, currentPath = '') {
                 link: `${HEAD_PATH}/${dirPath}/${file.replace('.md', '')}`
             }));
 
-        if (mdFiles.length > 0) {
+        const nonStandardFiles = dir.files
+            .filter(file => !/^\d+-/.test(file) && file.endsWith('.md'))
+            .map(file => ({
+                text: file.replace('.md', ''),
+                link: `${HEAD_PATH}/${dirPath}/${file.replace('.md', '')}`
+            }));
+
+        const allFiles = [...standardFiles, ...nonStandardFiles];
+
+        if (allFiles.length > 0) {
             sidebarConfig[configKey] = [{
-                items: mdFiles
+                items: allFiles
             }];
         }
 
@@ -65,7 +73,6 @@ export const sidebarConfig: DefaultTheme.Sidebar = ${JSON.stringify(sidebarConfi
             .replace(/"([^"]+)":/g, '$1:')
             .replace(/'\[/g, '[')
             .replace(/\]'/g, ']')}`;
-
 
     fs.writeFileSync(OUTPUT_FILE, configContent);
     console.log('侧边栏配置已生成');

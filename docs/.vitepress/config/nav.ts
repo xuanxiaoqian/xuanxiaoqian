@@ -3,7 +3,7 @@ import { DefaultTheme } from 'vitepress'
 export const navConfig: DefaultTheme.NavItem[] = [
   {
     text: "demo",
-    link: "/pages/demo/1-demo1",
+    link: "/pages/demo/x-demo1",
     activeMatch: "/pages/demo/"
   },
   {

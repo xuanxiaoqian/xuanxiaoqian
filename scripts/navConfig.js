@@ -39,10 +39,12 @@ function generateNavItems(structure, basePath = '') {
 
   structure.dirs.forEach(dir => {
     const currentPath = basePath ? `${basePath}/${dir.name}` : dir.name;
-    const defaultFile = dir.files.find(f => f.startsWith('1-'));
+    const has1PrefixFile = dir.files.some(f => f.startsWith('1-'));
+    const defaultFile = has1PrefixFile
+      ? dir.files.find(f => f.startsWith('1-'))
+      : dir.files[0];
 
     if (dir.dirs.length > 0) {
-      // 处理多级目录（如text/1/）
       const items = generateNavItems(dir, currentPath);
       if (items.length > 0) {
         navItems.push({
@@ -51,7 +53,6 @@ function generateNavItems(structure, basePath = '') {
         });
       }
     } else if (defaultFile) {
-      // 处理单级目录
       navItems.push({
         text: dir.name,
         link: `${HEAD_PATH}/${currentPath}/${defaultFile.replace('.md', '')}`,
@@ -64,7 +65,6 @@ function generateNavItems(structure, basePath = '') {
 }
 
 function generateConfig() {
-
   const structure = scanDirectory(PAGES_DIR);
   const navConfig = generateNavItems(structure);
 
