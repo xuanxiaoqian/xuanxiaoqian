@@ -4,14 +4,13 @@ import { useRoute } from 'vitepress'
 import imageViewer from 'vitepress-plugin-image-viewer'
 import vImageViewer from 'vitepress-plugin-image-viewer/lib/vImageViewer.vue'
 import Theme from "vitepress/theme"
-import VuaImage from "../components/vua-image/index.vue"
 import "./style/article.css"
 import "./style/var.css"
 
 export default {
   ...Theme,
   enhanceApp({ app }) {
-    app.component('VuaImage', VuaImage)
+    // app.component('VuaImage', VuaImage)
     app.component('vImageViewer', vImageViewer)
   },
   setup() {

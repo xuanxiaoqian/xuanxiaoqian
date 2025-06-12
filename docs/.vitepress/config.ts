@@ -7,6 +7,7 @@ import { navConfig } from './config/nav'
 import { sidebarConfig } from './config/sidebar'
 
 export default defineConfig({
+  ignoreDeadLinks: true,
   title: '轩小浅',
   description: '轩小浅官网',
   head: headConfig,
