@@ -5,6 +5,14 @@ export const sidebarConfig: DefaultTheme.Sidebar = {
     {
       items: [
         {
+          text: "demo2",
+          link: "/pages/demo/demo2"
+        },
+        {
+          text: "demo3",
+          link: "/pages/demo/demo3"
+        },
+        {
           text: "x-demo1",
           link: "/pages/demo/x-demo1"
         }

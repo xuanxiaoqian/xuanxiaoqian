@@ -22,10 +22,14 @@ function scanDirectory(dirPath) {
   entries.forEach(entry => {
     const fullPath = path.join(dirPath, entry);
     if (fs.statSync(fullPath).isDirectory()) {
-      result.dirs.push({
-        name: entry,
-        ...scanDirectory(fullPath)
-      });
+      const subDir = scanDirectory(fullPath);
+      // 只有当子目录有文件或有包含.md文件的子目录时才保留
+      if (subDir.files.length > 0 || subDir.dirs.length > 0) {
+        result.dirs.push({
+          name: entry,
+          ...subDir
+        });
+      }
     } else if (entry.endsWith('.md')) {
       result.files.push(entry);
     }

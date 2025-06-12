@@ -40,6 +40,15 @@
   --vp-c-text-code: #e96900;
 
   --xuan-footer-a-color: #2E2EFF;
+
+  /* >字体样式 */
+  --xuan-blockquote-font-color: #777;
+
+  /* **加粗字体样式 */
+  --xuan-strong-font-color: #FED33C;
+
+  /* 导航栏选中字体颜色 */
+  --xuan-outline-link-active-font-color: #3a5ccc;
 }
 
 .dark {
@@ -50,27 +59,12 @@
   --vp-c-text-code: #f1c40f;
 
   --xuan-footer-a-color: #ffffff;
-}
 
-/* 修改 > 样式*/
-.vp-doc blockquote {
-  border-left: 4px solid #42b983;
-  padding: 10px 15px;
-  color: #777;
-  background-color: rgba(66, 185, 131, 0.1);
-}
+  --xuan-blockquote-font-color: #bbb;
 
-.vp-doc img {
-  cursor: pointer;
-  transition: transform 0.3s ease-out;
-  /* 添加过渡效果 */
-  margin-bottom: 10px;
-  margin-top: 10px;
-  box-shadow: 0px 0px 6px rgba(0, 21, 41, 0.35);
-}
+  /* **加粗字体样式 */
+  --xuan-strong-font-color: #dfac46;
 
-.vp-doc img:hover {
-  transform: scale(1.02);
-  /* 图片放大 20% */
+  /* 导航栏选中字体颜色 */
+  --xuan-outline-link-active-font-color: #a8b1ff;
 }
-
