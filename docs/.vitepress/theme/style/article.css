@@ -6,6 +6,8 @@
   --dora-text-indigo-plus: #3451b2;
   --dora-border-indigo: #3e63dd;
   --dora-bg-indigo: #f0f4ff;
+
+  --xuan-a-font-color: #3451b2;
 }
 
 .dark {
@@ -13,6 +15,19 @@
   --dora-text-indigo-plus: #dddffe;
   --dora-border-indigo: #99a2ff;
   --dora-bg-indigo: #1a2242;
+
+  --xuan-a-font-color: #a8b1ff;
+}
+
+.vp-doc a {
+  text-decoration: none;
+  font-weight: 500;
+  transition: color .25s, opacity .25s;
+}
+
+.vp-doc a:hover {
+  text-decoration: underline dotted;
+  color: #5c73e7;
 }
 
 /* 标题 */
@@ -32,15 +47,11 @@
 
 .vp-doc h1 {
   padding-bottom: 0.5rem;
-  border-bottom: 4px solid var(--dora-border-indigo);
-  width: fit-content;
-  transition-property: all;
-  transition-duration: 300ms;
+  width: 100%;
+  text-align: center;
 }
 
-.vp-doc h1:hover {
-  padding-right: 1.75rem;
-}
+
 
 .vp-doc h2 {
   margin-top: 10px;

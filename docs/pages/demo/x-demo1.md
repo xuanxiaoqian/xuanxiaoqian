@@ -2,7 +2,7 @@
 
 > 这是demo1
 
-```ts
+```vue
 <template>
   <div class="home">我是主页</div>
 </template>
@@ -20,3 +20,6 @@
 2. 天天向上
 3. 学习第一
 
+- 你好
+- 我好
+- 大家好

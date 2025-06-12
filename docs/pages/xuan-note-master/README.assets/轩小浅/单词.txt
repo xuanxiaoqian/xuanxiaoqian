@@ -1,0 +1,14 @@
+Repository
+star
+fork
+global
+status
+cached
+branch
+merge
+checkout
+merge
+fatal
+remote
+fetch
+paste

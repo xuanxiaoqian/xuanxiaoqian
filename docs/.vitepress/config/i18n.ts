@@ -14,5 +14,7 @@ export const i18nConfig: DefaultTheme.Config = {
   outlineTitle: '导航栏',
 
   darkModeSwitchTitle: '切换到暗黑主题',
-  lightModeSwitchTitle: '切换到光明主题'
+  lightModeSwitchTitle: '切换到光明主题',
+
+
 }
