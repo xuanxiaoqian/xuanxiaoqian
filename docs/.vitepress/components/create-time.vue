@@ -1,16 +1,11 @@
 <template>
-  <div v-if="frontmatter.createTime" style="
-        line-height: 32px;
-        font-size: 14px;
-        font-weight: 500;
-        margin-bottom: 20px;
-        float: right;">
+  <div class="create-time" v-if="frontmatter.createTime">
     创建时间: {{ formatDate(frontmatter.createTime) }}
   </div>
 </template>
 
 <script setup lang="ts">
-import { useData } from 'vitepress';
+import { useData } from 'vitepress'
 
 function formatDate(inputStr) {
   // 提取日期时间各部分
@@ -30,4 +25,13 @@ console.log(frontmatter.value.createTime);
 
 </script>
 
-<style lang="scss" scoped></style>
+<style scoped>
+.create-time {
+  line-height: 32px;
+  font-size: 14px;
+  font-weight: 500;
+  margin-bottom: 20px;
+  float: right;
+  color: var(--vp-c-text-2);
+}
+</style>
