@@ -19,6 +19,16 @@
   --xuan-a-font-color: #a8b1ff;
 }
 
+
+
+.VPSidebar.open .VPLink.link.link p.text {
+  font-size: 1.35rem;
+  margin-bottom: 10px;
+}
+
+
+
+
 .vp-doc a {
   text-decoration: none;
   font-weight: 500;

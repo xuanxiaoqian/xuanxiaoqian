@@ -13,6 +13,10 @@ export const sidebarConfig: DefaultTheme.Sidebar = {
           link: "/pages/demo/demo3"
         },
         {
+          text: "demo4",
+          link: "/pages/demo/demo4"
+        },
+        {
           text: "x-demo1",
           link: "/pages/demo/x-demo1"
         }
