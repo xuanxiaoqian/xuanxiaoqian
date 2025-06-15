@@ -1,6 +1,6 @@
 import { HeadConfig } from 'vitepress'
 
-const BASE_URL = '/xuanxiaoqian/'
+const BASE_URL = '/'
 
 export const headConfig: HeadConfig[] = [
   ['link', { rel: 'icon', href: `${BASE_URL}xuanxiaoqian.webp` }],
