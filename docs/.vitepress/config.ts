@@ -6,7 +6,10 @@ import { markdownConfig } from './config/markdown'
 import { navConfig } from './config/nav'
 import { sidebarConfig } from './config/sidebar'
 
+const BASE_URL = '/xuanxiaoqian/'
+
 export default defineConfig({
+  base: BASE_URL,
   ignoreDeadLinks: true,
   title: '轩小浅',
   description: '轩小浅官网',

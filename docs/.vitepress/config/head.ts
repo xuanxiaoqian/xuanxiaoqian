@@ -1,13 +1,14 @@
 import { HeadConfig } from 'vitepress'
 
+const BASE_URL = '/xuanxiaoqian/'
 
 export const headConfig: HeadConfig[] = [
-  ['link', { rel: 'icon', href: '/xuanxiaoqian.webp' }],
-  ['link', { rel: 'manifest', href: '/manifest.json' }],
+  ['link', { rel: 'icon', href: `${BASE_URL}xuanxiaoqian.webp` }],
+  ['link', { rel: 'manifest', href: `${BASE_URL}manifest.json` }],
   ['script', { id: 'pwa' }, `
     if ("serviceWorker" in navigator) {
       window.addEventListener("load", function () {
-        navigator.serviceWorker.register("/serviceWorker.js").then(res => console.log("service worker registered")).catch(err => console.log("service worker not registered", err))
+        navigator.serviceWorker.register("${BASE_URL}serviceWorker.js").then(res => console.log("service worker registered")).catch(err => console.log("service worker not registered", err))
       })
     }
     `],
