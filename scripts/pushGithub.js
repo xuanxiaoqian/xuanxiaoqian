@@ -22,4 +22,5 @@ try {
   await $`git push github pages`
 } catch (error) {
 
+}finally{
 }
