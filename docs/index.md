@@ -13,12 +13,8 @@ head:
 hero:
   name: xuanxiaoqian
   text: 轩小浅
-  tagline: 有伞从不怕雨,没伞怨天尤人
+  tagline: 有伞不会怕雨，没伞怨天尤人
   image:
     src: /xuanxiaoqian.webp
     alt: xuanxiaoqian.webp
-  actions:
-    - theme: brand
-      text: 了解更多
-      link: /pages/idea/why
 ---
