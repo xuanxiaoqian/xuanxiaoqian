@@ -11,7 +11,7 @@ await $`git -C ./docs/.vitepress/dist add .`;
 await $`git -C ./docs/.vitepress/dist commit -m "提交时间：${formattedTime}"`;
 
 try {
-  await $`git -C ./docs/.vitepress/dist push github pages`;
+  await $`git -C ./docs/.vitepress/dist push -f github pages`;
 } catch (error) {
   console.error('推送失败:', error);
 }
