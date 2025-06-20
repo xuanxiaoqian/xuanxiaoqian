@@ -9,6 +9,10 @@ export const sidebarConfig: DefaultTheme.Sidebar = {
           link: "/pages/交易/不考虑极端情况的系统，长期下去必然爆仓"
         },
         {
+          text: "交易思维",
+          link: "/pages/交易/交易思维"
+        },
+        {
           text: "交易账户对账",
           link: "/pages/交易/交易账户对账"
         },
