@@ -121,5 +121,9 @@ export const sidebarConfig: DefaultTheme.Sidebar = {
 }
 ```
 
-items顺序是根据1-xxx,2-xx进行排序，同时text会去掉
+items顺序是根据1-xxx,2-xx进行排序，同时text会去掉开头
+
+
+## TODO：
+目前有BUG，新增文件后导航栏生成不正确，但是重启后正确，所以建议新建的时候直接导航栏搜索地址，写完后再重启。
 

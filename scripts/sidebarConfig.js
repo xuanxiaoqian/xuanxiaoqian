@@ -31,7 +31,7 @@ function generateSidebarConfig(structure, currentPath = '') {
 
     structure.dirs.forEach(dir => {
         const dirPath = currentPath ? `${currentPath}/${dir.name}` : dir.name;
-        const configKey = `['${HEAD_PATH}/${dirPath}']`;
+        const configKey = `['${HEAD_PATH}/${dirPath}/']`;
 
         // 分离符合命名规范和不规范的文件
         const standardFiles = dir.files

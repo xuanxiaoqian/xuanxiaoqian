@@ -5,7 +5,7 @@
   "version": "1.0.0",
   "description": "轩小浅官网",
   "scripts": {
-    "dev": "node scripts/generateNav.js && vitepress dev docs",
+    "dev": "node scripts/watch.js",
     "build": "node scripts/generateNav.js && vitepress build docs",
     "push": "node scripts/pushGithub.js",
     "serve": "node scripts/generateNav.js && vitepress serve docs"
