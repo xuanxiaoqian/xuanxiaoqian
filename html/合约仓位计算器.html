@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>仓位计算</title>
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  <style>
+    :root {
+      --primary-color: #3a7bd5;
+      --secondary-color: #2d3748;
+      --background-color: #1a202c;
+      --text-color: #e2e8f0;
+      --input-bg: #2d3748;
+      --input-border: #4a5568;
+      --border-radius: 12px;
+      --box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+      --transition: all 0.3s ease;
+      --hover-bg: #4a5568;
+      --active-bg: #2c5282;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    /* Chrome/Safari/Edge等Webkit内核浏览器 */
+    input[type="number"]::-webkit-outer-spin-button,
+    input[type="number"]::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+
+    /* Firefox */
+    input[type="number"] {
+      appearance: textfield;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      line-height: 1.6;
+      background: var(--background-color);
+      color: var(--text-color);
+      min-height: 100vh;
+      padding: 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    #app {
+      width: 100%;
+      max-width: 500px;
+    }
+
+    .calculator {
+      background: var(--secondary-color);
+      border-radius: var(--border-radius);
+      box-shadow: var(--box-shadow);
+      padding: 30px;
+      width: 100%;
+    }
+
+    .title {
+      color: var(--primary-color);
+      text-align: center;
+      margin-bottom: 30px;
+      font-weight: 600;
+      font-size: 1.8rem;
+    }
+
+    .input-group {
+      margin-bottom: 20px;
+    }
+
+    .input-label {
+      display: block;
+      margin-bottom: 8px;
+      color: var(--text-color);
+      font-weight: 500;
+      font-size: 1rem;
+    }
+
+    .input-field {
+      width: 100%;
+      padding: 15px;
+      background: var(--input-bg);
+      border: 1px solid var(--input-border);
+      border-radius: var(--border-radius);
+      font-size: 1rem;
+      transition: var(--transition);
+      color: var(--text-color);
+    }
+
+    .input-field:focus {
+      outline: none;
+      border-color: var(--primary-color);
+      box-shadow: 0 0 0 2px rgba(58, 123, 213, 0.5);
+    }
+
+    .input-field::placeholder {
+      color: #a0aec0;
+    }
+
+    .operator-btn {
+      padding: 12px;
+      background: var(--input-bg);
+      border: 1px solid var(--input-border);
+      border-radius: var(--border-radius);
+      font-size: 1.2rem;
+      cursor: pointer;
+      transition: var(--transition);
+      text-align: center;
+      color: var(--text-color);
+    }
+
+    .operator-btn:hover {
+      background: var(--hover-bg);
+    }
+
+    .operator-btn.active {
+      background: var(--active-bg);
+      color: white;
+      border-color: var(--primary-color);
+    }
+
+    .result-group {
+      margin-top: 30px;
+      padding: 20px;
+      background: var(--input-bg);
+      border-radius: var(--border-radius);
+      text-align: center;
+    }
+
+    .result-label {
+      color: var(--text-color);
+      margin-bottom: 10px;
+      font-size: 1rem;
+    }
+
+    .result-value {
+      font-size: 1.8rem;
+      font-weight: bold;
+      color: #67c23a;
+    }
+
+    /* 响应式设计 - 手机 */
+    @media (max-width: 600px) {
+      .calculator {
+        padding: 20px;
+      }
+
+      .title {
+        font-size: 1.5rem;
+        margin-bottom: 20px;
+      }
+
+      .input-field {
+        padding: 12px;
+      }
+
+      .result-value {
+        font-size: 1.5rem;
+      }
+    }
+  </style>
+
+</head>
+
+<body>
+  <div id="app">
+    <div class="calculator">
+      <h1 class="title">仓位计算</h1>
+
+      <!-- 第一个输入框 -->
+      <div class="input-group">
+        <label class="input-label">百分比：</label>
+        <div>
+          <input ref="inputField" v-model.number="percentage" type="number" class="input-field" placeholder="请输入百分比 %">
+        </div>
+      </div>
+
+      <!-- 第二个输入框 -->
+      <div class="input-group">
+        <label class="input-label">亏损金额</label>
+        <input v-model.number="lossAmount" type="number" class="input-field" placeholder="请输入亏损金额">
+      </div>
+
+      <!-- 结果展示 -->
+      <div class="result-group">
+        <div class="result-label">数量</div>
+        <div class="result-value">{{ result }} USDT</div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const { createApp, ref, onMounted, computed, watch } = Vue
+
+    createApp({
+      setup() {
+        const percentage = ref(null)
+        const lossAmount = ref(10)
+        const result = computed(() => {
+          return (lossAmount.value / Number(percentage.value)) * 100
+        })
+        const inputField = ref(null)
+
+
+        watch(lossAmount, (newData, oldData) => {
+          const obj = {
+            lossAmount: newData
+          }
+          localStorage.setItem('_heyue_xuanxiaoqian', JSON.stringify(obj))
+        })
+
+        onMounted(() => {
+          if (inputField.value) {
+            inputField.value.focus()
+          }
+
+          const storedData = localStorage.getItem('_heyue_xuanxiaoqian')
+
+          if (storedData) {
+            const parsedData = JSON.parse(storedData)
+            lossAmount.value = parsedData.lossAmount
+          }
+        })
+
+        return {
+          percentage,
+          lossAmount,
+          result,
+          inputField,
+        }
+      }
+    }).mount('#app');
+  </script>
+</body>
+
+</html>
